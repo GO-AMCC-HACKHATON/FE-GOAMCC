@@ -28,3 +28,12 @@ export const RegisterSchema = Yup.object().shape({
     "Passwords must match",
   ),
 });
+
+export const LoginSchema = Yup.object().shape({
+  username: Yup.string()
+    .min(2, "Username must be 2 characters at minimum")
+    .required("Username is required"),
+  password: Yup.string()
+    .min(8, "Password must be 8 characters at minimum")
+    .required("Password is required"),
+});

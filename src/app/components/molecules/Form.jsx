@@ -2,9 +2,9 @@ import { Form, Formik } from "formik";
 import React from "react";
 import Input from "../atoms/Input";
 import Button from "../atoms/Button";
-import { RegisterSchema } from "@/utils/validation";
+import { LoginSchema, RegisterSchema } from "@/utils/validation";
 import { MdChevronRight } from "@/utils/icon";
-import { registerHandler } from "@/utils/auth";
+import { loginHandler, registerHandler } from "@/utils/auth";
 
 const FormComponent = ({ as }) => {
   return (
@@ -218,6 +218,81 @@ const FormComponent = ({ as }) => {
                         <div className="mt-8 btn">
                           <Button type="submit">
                             Daftar{" "}
+                            <MdChevronRight className="inline-block text-lg font-extrabold" />
+                          </Button>
+                        </div>
+                      </Form>
+                    );
+                  }}
+                </Formik>
+              </div>
+            );
+
+          case "login":
+            return (
+              <div className="w-full h-full">
+                <Formik
+                  initialValues={{
+                    password: "",
+                    username: "",
+                  }}
+                  onSubmit={(values, { resetForm }) => {
+                    loginHandler(values);
+                    resetForm();
+                  }}
+                  validationSchema={LoginSchema}
+                >
+                  {(props) => {
+                    const {
+                      values,
+                      touched,
+                      errors,
+                      handleChange,
+                      handleBlur,
+                    } = props;
+                    return (
+                      <Form className="flex flex-col h-full py-5">
+                        <div className="space-y-[10px]">
+                          <div className="space-y-1 form-control">
+                            <label
+                              htmlFor="username"
+                              className="text-sm font-medium text-fe-dark"
+                            >
+                              Nama Pengguna
+                            </label>
+                            <Input
+                              name="username"
+                              type="text"
+                              placeholder="cth : fajripinto"
+                              value={values.username}
+                              handleChange={handleChange}
+                              handleBlur={handleBlur}
+                              touched={touched.username}
+                              errors={errors.username}
+                            />
+                          </div>
+                          <div className="space-y-1 form-control">
+                            <label
+                              htmlFor="password"
+                              className="text-sm font-medium text-fe-dark"
+                            >
+                              Password
+                            </label>
+                            <Input
+                              name="password"
+                              type="password"
+                              placeholder="Ketik kata sandi"
+                              value={values.password}
+                              handleChange={handleChange}
+                              handleBlur={handleBlur}
+                              touched={touched.password}
+                              errors={errors.password}
+                            />
+                          </div>
+                        </div>
+                        <div className="mt-8 btn">
+                          <Button type="submit">
+                            Masuk{" "}
                             <MdChevronRight className="inline-block text-lg font-extrabold" />
                           </Button>
                         </div>
