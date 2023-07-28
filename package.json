@@ -31,12 +31,11 @@
     "prettier": "^3.0.0"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-      "prettier --write",
-      "git add"
+    "src/**/*.{js,jsx,ts,tsx,}": [
+      "prettier --w"
     ],
-    "*": [
-      "git commit --allow-empty"
+    "src/**/*.{json,css,scss,md}": [
+      "prettier -w"
     ]
   }
 }
