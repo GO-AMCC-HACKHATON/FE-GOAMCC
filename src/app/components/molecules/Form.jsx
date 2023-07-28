@@ -227,6 +227,7 @@ const FormComponent = ({ as }) => {
                 </Formik>
               </div>
             );
+
           case "login":
             return (
               <div className="w-full h-full">
