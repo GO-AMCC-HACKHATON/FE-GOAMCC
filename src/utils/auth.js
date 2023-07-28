@@ -19,3 +19,29 @@ export const registerHandler = async (value) => {
     alert(error);
   }
 };
+
+export const loginHandler = async (value) => {
+  try {
+    const res = await fetch(
+      "http://34.101.154.14:8175/hackathon/user/auth/token",
+      {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify({
+          username: "robin",
+          loginPassword: "12345678",
+        }),
+      },
+    );
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
