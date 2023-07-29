@@ -7,6 +7,7 @@ import Message from "@/assets/icons/message.svg";
 import Saldo from "@/assets/images/saldo.png";
 import Tunai from "@/assets/images/tunai.png";
 import Riwayat from "@/assets/images/riwayat.png";
+import Success from "@/assets/images/success.png";
 import BerandaImage from "@/assets/images/home-content.png";
 
 export {
@@ -20,4 +21,5 @@ export {
   Riwayat,
   FeansText,
   BerandaImage,
+  Success,
 };
