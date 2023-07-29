@@ -1,7 +1,7 @@
 "use client";
 
-import MainLayout from "@/app/components/templates/MainLayout";
 import FormComponent from "@/components/molecules/Form";
+import MainLayout from "@/components/templates/MainLayout";
 import { Feans } from "@/utils/icon";
 import Image from "next/image";
 import React from "react";

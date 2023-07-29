@@ -1,5 +1,4 @@
 import Image from "next/image";
-import React from "react";
 import {
   Coin,
   Feans,
@@ -13,8 +12,11 @@ import {
 import { CONTENT_BERANDA } from "@/constants";
 import MainLayout from "@/components/templates/MainLayout";
 import Card from "@/components/atoms/Card";
+import { getDataUser, getGreetingBasedOnTime } from "@/utils/helper";
 
 export default function Home() {
+  const greeting = getGreetingBasedOnTime();
+  const data = getDataUser();
   return (
     <MainLayout>
       <section>
@@ -27,8 +29,10 @@ export default function Home() {
             </div>
             <div className="space-y-4">
               <div>
-                <p className="text-sm text-white">Selamat Pagi,</p>
-                <h1 className="font-bold text-white text-fe-h4">Nabraska</h1>
+                <p className="text-sm text-white">{greeting},</p>
+                <h1 className="font-bold text-white text-fe-h4">
+                  {data?.username}
+                </h1>
               </div>
               <div className="flex gap-2">
                 <div className="bg-[#FFB904] w-full p-3 border-2 rounded-xl border-fe-secondary">
