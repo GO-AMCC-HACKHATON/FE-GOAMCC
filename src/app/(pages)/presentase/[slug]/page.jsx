@@ -1,9 +1,33 @@
+"use client";
+
 import Button from "@/components/atoms/Button";
 import MainLayout from "@/components/templates/MainLayout";
+import { getToken } from "@/utils/helper";
 import { Feans, MdChevronRight } from "@/utils/icon";
 import Image from "next/image";
 
 const PinjamanPage = () => {
+  const token = getToken();
+  console.log(token);
+  const addBalanceHandler = async (e) => {
+    e.preventDefault();
+    const res = await fetch(
+      "http://34.101.154.14:8175/hackathon/bankAccount/addBalance",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          receiverAccountNo: "58594545352927",
+          amount: 700000,
+        }),
+      },
+    );
+    alert("berhasil");
+    return await res.json();
+  };
   return (
     <MainLayout>
       <div className="flex flex-col w-full">
@@ -56,57 +80,62 @@ const PinjamanPage = () => {
               </h1>
             </div>
           </div>
-          <div className="flex items-center justify-between w-full px-4 py-3 bg-white">
-            <div>
-              <div className="text-sm text-[#CA5B00]">
-                <h1 className="font-bold">6 Bulan</h1>
-                <p className="text-xs text-[#F09000]">1.32% per bulan</p>
+          <form className="w-full">
+            <div
+              className="flex items-center justify-between w-full px-4 py-3 bg-white cursor-pointer"
+              onClick={addBalanceHandler}
+            >
+              <div>
+                <div className="text-sm text-[#CA5B00]">
+                  <h1 className="font-bold">6 Bulan</h1>
+                  <p className="text-xs text-[#F09000]">1.32% per bulan</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3">
+                <div className="text-sm text-[#CA5B00]">
+                  <h1 className="font-bold">Rp. 1.320.000 </h1>
+                  <p className="text-xs text-[#F09000]">cicilan perbulan</p>
+                </div>
+                <div className="flex items-center text-[#CA5B00]">
+                  <MdChevronRight alt="indicator" className="text-2xl" />
+                </div>
               </div>
             </div>
-            <div className="flex items-center space-x-3">
-              <div className="text-sm text-[#CA5B00]">
-                <h1 className="font-bold">Rp. 1.320.000 </h1>
-                <p className="text-xs text-[#F09000]">cicilan perbulan</p>
+            <div className="flex items-center justify-between w-full px-4 py-3 bg-white">
+              <div>
+                <div className="text-sm text-[#CA5B00]">
+                  <h1 className="font-bold">6 Bulan</h1>
+                  <p className="text-xs text-[#F09000]">1.32% per bulan</p>
+                </div>
               </div>
-              <div className="flex items-center text-[#CA5B00]">
-                <MdChevronRight alt="indicator" className="text-2xl" />
-              </div>
-            </div>
-          </div>
-          <div className="flex items-center justify-between w-full px-4 py-3 bg-white">
-            <div>
-              <div className="text-sm text-[#CA5B00]">
-                <h1 className="font-bold">6 Bulan</h1>
-                <p className="text-xs text-[#F09000]">1.32% per bulan</p>
-              </div>
-            </div>
-            <div className="flex items-center space-x-3">
-              <div className="text-sm text-[#CA5B00]">
-                <h1 className="font-bold">Rp. 1.320.000 </h1>
-                <p className="text-xs text-[#F09000]">cicilan perbulan</p>
-              </div>
-              <div className="flex items-center text-[#CA5B00]">
-                <MdChevronRight alt="indicator" className="text-2xl" />
+              <div className="flex items-center space-x-3">
+                <div className="text-sm text-[#CA5B00]">
+                  <h1 className="font-bold">Rp. 1.320.000 </h1>
+                  <p className="text-xs text-[#F09000]">cicilan perbulan</p>
+                </div>
+                <div className="flex items-center text-[#CA5B00]">
+                  <MdChevronRight alt="indicator" className="text-2xl" />
+                </div>
               </div>
             </div>
-          </div>
-          <div className="flex items-center justify-between w-full px-4 py-3 bg-white">
-            <div>
-              <div className="text-sm text-[#CA5B00]">
-                <h1 className="font-bold">6 Bulan</h1>
-                <p className="text-xs text-[#F09000]">1.32% per bulan</p>
+            <div className="flex items-center justify-between w-full px-4 py-3 bg-white">
+              <div>
+                <div className="text-sm text-[#CA5B00]">
+                  <h1 className="font-bold">6 Bulan</h1>
+                  <p className="text-xs text-[#F09000]">1.32% per bulan</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3">
+                <div className="text-sm text-[#CA5B00]">
+                  <h1 className="font-bold">Rp. 1.320.000 </h1>
+                  <p className="text-xs text-[#F09000]">cicilan perbulan</p>
+                </div>
+                <div className="flex items-center text-[#CA5B00]">
+                  <MdChevronRight alt="indicator" className="text-2xl" />
+                </div>
               </div>
             </div>
-            <div className="flex items-center space-x-3">
-              <div className="text-sm text-[#CA5B00]">
-                <h1 className="font-bold">Rp. 1.320.000 </h1>
-                <p className="text-xs text-[#F09000]">cicilan perbulan</p>
-              </div>
-              <div className="flex items-center text-[#CA5B00]">
-                <MdChevronRight alt="indicator" className="text-2xl" />
-              </div>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
     </MainLayout>

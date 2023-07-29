@@ -9,7 +9,7 @@ import {
   RegisterSchema,
 } from "@/utils/validation";
 import { MdChevronRight } from "@/utils/icon";
-import { loginHandler, registerHandler } from "@/utils/auth";
+import { registerHandler } from "@/utils/auth";
 import { useAppState } from "@/context/state";
 import { useRouter } from "next/navigation";
 
@@ -17,12 +17,81 @@ const FormComponent = ({ as }) => {
   const router = useRouter();
   const [state, setState] = useAppState();
 
-  // const saveSupportHandler = (value) => {
-  //     setState({ ...state, ...value })
-  //     router.push("/company")
-  // }
+  const registerHandler = async (value) => {
+    const res = await fetch(
+      "http://34.101.154.14:8175/hackathon/user/auth/create",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ktpId: value.ktp,
+          username: value.username,
+          loginPassword: value.password,
+          phoneNumber: value.phoneNumber,
+          birthDate: value.birthday,
+          gender: parseInt(value.gender),
+          email: value.gender,
+        }),
+      },
+    );
+    const { data, errMsg, errCode } = await res.json();
+
+    if (errCode === "1025") {
+      alert(errMsg);
+      return;
+    }
+    alert("success");
+    router.push("/login");
+    return data;
+  };
+
+  const loginHandler = async (value) => {
+    const res = await fetch(
+      "http://34.101.154.14:8175/hackathon/user/auth/token",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: value.username,
+          loginPassword: value.password,
+        }),
+      },
+    );
+
+    const { data, errMsg, errCode } = await res.json();
+
+    if (errCode === "1025") {
+      alert(errMsg);
+      return;
+    }
+
+    const infoRes = await fetch(
+      "http://34.101.154.14:8175/hackathon/user/info",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${data.accessToken}`,
+        },
+        body: JSON.stringify({}),
+      },
+    );
+
+    const infoData = await infoRes.json();
+
+    localStorage.setItem("userInfo", JSON.stringify(infoData.data));
+
+    alert("success");
+    router.push("/");
+    localStorage.setItem("token", JSON.stringify(data.accessToken));
+    return data;
+  };
+
   const savePersonalHandler = (value) => {
-    console.log(value);
     setState({ ...state, ...value });
     router.push("/company");
   };
