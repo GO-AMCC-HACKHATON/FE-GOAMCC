@@ -9,6 +9,9 @@ import Tunai from "@/assets/images/tunai.png";
 import Riwayat from "@/assets/images/riwayat.png";
 import Success from "@/assets/images/success.png";
 import BerandaImage from "@/assets/images/home-content.png";
+import Tagihan from "@/assets/images/management.png";
+import ArrowBack from "@/assets/icons/arrow-back.svg";
+import BCA from "@/assets/images/BCA.png";
 
 export {
   MdChevronRight,
@@ -22,4 +25,7 @@ export {
   FeansText,
   BerandaImage,
   Success,
+  Tagihan,
+  ArrowBack,
+  BCA,
 };
