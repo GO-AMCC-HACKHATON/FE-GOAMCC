@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import MainLayout from "./components/templates/MainLayout";
 import {
   Coin,
   Feans,
@@ -12,7 +11,8 @@ import {
   Tunai,
 } from "@/utils/icon";
 import { CONTENT_BERANDA } from "@/constants";
-import Card from "./components/atoms/Card";
+import MainLayout from "@/components/templates/MainLayout";
+import Card from "@/components/atoms/Card";
 
 export default function Home() {
   return (
